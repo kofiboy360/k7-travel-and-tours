@@ -1,0 +1,1389 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: contact_us
+    label: Contact Us
+    folder: cms/contact-us
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: contact-us
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[contact-us].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - name: tour_packages
+    label: Tour Packages
+    folder: cms/tour-packages
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_property-image
+        label: Property Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_gallery
+        label: Gallery
+        widget: list
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_address
+        label: Address
+        widget: string
+        required: false
+      - hint: ''
+        name: f_date
+        label: Date
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_price-tag
+        label: Price Tag
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: tour-packages
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[tour-packages].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+    editor:
+      preview: false
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: 10% discount , key: 1f656d45'
+            label: Text
+            name: 1f656d45
+            widget: string
+          - hint: 'Original text: for groups of 10 and above, key: -728e0e19'
+            label: Text
+            name: '-728e0e19'
+            widget: string
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: Destinations, key: -48326dbb'
+            label: Text
+            name: '-48326dbb'
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: View Packages, key: 4d68b808'
+            label: Text
+            name: 4d68b808
+            widget: string
+          - hint: >-
+              Original text: reconnecting africans to their rich culture through
+              an enjoyable and , key: 71e75f85
+            label: Text
+            name: 71e75f85
+            widget: string
+          - hint: 'Original text: memorable experience!, key: 120b80a9'
+            label: Text
+            name: 120b80a9
+            widget: string
+          - hint: 'Original text: Book Now, key: 7b3ec11f'
+            label: Text
+            name: 7b3ec11f
+            widget: string
+          - hint: 'Original text: See all Tour Packages, key: 347f42c9'
+            label: Text
+            name: 347f42c9
+            widget: string
+          - hint: 'Original text: About , key: 74843a53'
+            label: Text
+            name: 74843a53
+            widget: string
+          - hint: 'Original text: Us, key: abe'
+            label: Text
+            name: abe
+            widget: string
+          - hint: >-
+              Original text: We are a Travel and Tours company established in
+              2023. Our main aim is to help reconnect our people in the
+              diaspora. We also teach our rich culture to the African youth
+              eager to learn, on our tours, while giving the most enjoyable and
+              memorable experience ever., key: 65ff44c2
+            label: Text
+            name: 65ff44c2
+            widget: text
+          - hint: 'Original text: Learn more, key: -52aefc2f'
+            label: Text
+            name: '-52aefc2f'
+            widget: string
+          - hint: 'Original text: Our Tour , key: 4fd2ab4'
+            label: Text
+            name: 4fd2ab4
+            widget: string
+          - hint: 'Original text: packages, key: 2cc154ed'
+            label: Text
+            name: 2cc154ed
+            widget: string
+          - hint: 'Original text: Filter By Location, key: -2907cf2a'
+            label: Text
+            name: '-2907cf2a'
+            widget: string
+          - hint: 'Original text: Greater Accra Region, key: -6d51da96'
+            label: Text
+            name: '-6d51da96'
+            widget: string
+          - hint: 'Original text: Central Region, key: -b36c3c1'
+            label: Text
+            name: '-b36c3c1'
+            widget: string
+          - hint: 'Original text: Eastern Region, key: 6583ea90'
+            label: Text
+            name: 6583ea90
+            widget: string
+          - hint: 'Original text: Locations, key: 3016773e'
+            label: Text
+            name: 3016773e
+            widget: string
+          - hint: 'Original text: Reset, key: 4b32d2f'
+            label: Text
+            name: 4b32d2f
+            widget: string
+          - hint: 'Original text: Sort By Price, key: 3645f462'
+            label: Text
+            name: 3645f462
+            widget: string
+          - hint: 'Original text: Lowest To Highest, key: -182e1cf3'
+            label: Text
+            name: '-182e1cf3'
+            widget: string
+          - hint: 'Original text: Highest To Lowest, key: -7cd37da5'
+            label: Text
+            name: '-7cd37da5'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: Showing, key: -218ee85b'
+            label: Text
+            name: '-218ee85b'
+            widget: string
+          - hint: 'Original text: 0, key: 30'
+            label: Text
+            name: '30'
+            widget: string
+          - hint: 'Original text: out of, key: -3bf01417'
+            label: Text
+            name: '-3bf01417'
+            widget: string
+          - hint: 'Original text:  result(s), key: 1cb92ee1'
+            label: Text
+            name: 1cb92ee1
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: Our , key: 25ae74'
+            label: Text
+            name: 25ae74
+            widget: string
+          - hint: 'Original text: Services, key: 560f747e'
+            label: Text
+            name: 560f747e
+            widget: string
+          - hint: >-
+              Original text: Explore All Tours Of The Gold Coast With Us., key:
+              -6af031e7
+            label: Text
+            name: '-6af031e7'
+            widget: string
+          - hint: 'Original text: Photograpgy & Videography, key: 6b1218ca'
+            label: Text
+            name: 6b1218ca
+            widget: string
+          - hint: >-
+              Original text: Photography and video packages are also available
+              for those willing to savour the memories, key: 38a02f61
+            label: Text
+            name: 38a02f61
+            widget: string
+          - hint: 'Original text: Provision Of Lunch & Dinner, key: -2760f340'
+            label: Text
+            name: '-2760f340'
+            widget: string
+          - hint: >-
+              Original text: On all tours water , lunch and dinner will be
+              provided as well as some local and foreign drinks ., key: 23f00b6
+            label: Text
+            name: 23f00b6
+            widget: text
+          - hint: >-
+              Original text: Provision Of Different Types of Vehicles, key:
+              6f052ba4
+            label: Text
+            name: 6f052ba4
+            widget: string
+          - hint: >-
+              Original text: We offer various vehicles from buses to 4-wheel
+              drives as well as saloon cars for all our tours, key: -7d71bdbc
+            label: Text
+            name: '-7d71bdbc'
+            widget: text
+          - hint: 'Original text: Heading, key: -6d5fea1e'
+            label: Text
+            name: '-6d5fea1e'
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Suspendisse varius enim in eros elementum tristique. Duis
+              cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+              commodo diam libero vitae erat. Aenean faucibus nibh et justo
+              cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
+              tristique posuere., key: -5286fc08
+            label: Text
+            name: '-5286fc08'
+            widget: text
+          - hint: 'Original text: Explore Top , key: -6d7d34e8'
+            label: Text
+            name: '-6d7d34e8'
+            widget: string
+          - hint: >-
+              Original text: click The options below to view our popular tourist
+              sites in that region, key: -565910a3
+            label: Text
+            name: '-565910a3'
+            widget: string
+          - hint: 'Original text: View Tourist Sites, key: 3a1ac543'
+            label: Text
+            name: 3a1ac543
+            widget: string
+          - hint: 'Original text: the eastern region, key: -17115621'
+            label: Text
+            name: '-17115621'
+            widget: string
+          - hint: 'Original text: the central region, key: 7833fb8e'
+            label: Text
+            name: 7833fb8e
+            widget: string
+          - hint: >-
+              Original text: Begin your adventure with us. You’re in good hands,
+              key: 2f4e48d
+            label: Text
+            name: 2f4e48d
+            widget: string
+          - hint: 'Original text: Contact Us, key: 7f2746de'
+            label: Text
+            name: 7f2746de
+            widget: string
+          - hint: 'Original text: Meet the , key: 3b2cdde8'
+            label: Text
+            name: 3b2cdde8
+            widget: string
+          - hint: 'Original text: CEO, key: 1042d'
+            label: Text
+            name: 1042d
+            widget: string
+          - hint: 'Original text: About the ceo, key: -6f6dc195'
+            label: Text
+            name: '-6f6dc195'
+            widget: string
+          - hint: >-
+              Original text: I am Jesse Amoa born and Raised in Accra, Ghana. I
+              have a background in IT, sports and videography and I’m passionate
+              about Ghanaian and African History, key: -4233eed3
+            label: Text
+            name: '-4233eed3'
+            widget: text
+          - hint: 'Original text: Jesse Amoa, key: 3809deb4'
+            label: Text
+            name: 3809deb4
+            widget: string
+          - hint: 'Original text: CEO & FOUNDER, key: -42efe9e'
+            label: Text
+            name: '-42efe9e'
+            widget: string
+          - hint: >-
+              Original text: make your trip fun and noted. let's take you on
+              your dream trip, key: -3b8ffd2b
+            label: Text
+            name: '-3b8ffd2b'
+            widget: string
+          - hint: >-
+              Original text: Let us help reconnect you back to the Motherland
+              and teach you our rich African culture on your tour, while giving
+              you the most enjoyable and memorable experience ever., key:
+              142a505c
+            label: Text
+            name: 142a505c
+            widget: text
+          - hint: 'Original text: Company, key: -64202ba3'
+            label: Text
+            name: '-64202ba3'
+            widget: string
+          - hint: 'Original text: About Us, key: 645efc51'
+            label: Text
+            name: 645efc51
+            widget: string
+          - hint: 'Original text: Legal, key: 45e7299'
+            label: Text
+            name: '45e7299'
+            widget: string
+          - hint: 'Original text: Terms And Conditions, key: 497f14ba'
+            label: Text
+            name: 497f14ba
+            widget: string
+          - hint: 'Original text: Refund Policy, key: -234a8d26'
+            label: Text
+            name: '-234a8d26'
+            widget: string
+          - hint: 'Original text: Follow us, key: -5ae7feb3'
+            label: Text
+            name: '-5ae7feb3'
+            widget: string
+          - hint: 'Original text: Facebook, key: 217bfee6'
+            label: Text
+            name: 217bfee6
+            widget: string
+          - hint: 'Original text: Twitter, key: 2c9a4253'
+            label: Text
+            name: 2c9a4253
+            widget: string
+          - hint: 'Original text: Instagram, key: 792b2792'
+            label: Text
+            name: 792b2792
+            widget: string
+          - hint: 'Original text: LinkedIn, key: 4b0ff13e'
+            label: Text
+            name: 4b0ff13e
+            widget: string
+          - hint: 'Original text: YouTube, key: 280d3723'
+            label: Text
+            name: 280d3723
+            widget: string
+          - hint: 'Original text: Copyright © , key: 318803b0'
+            label: Text
+            name: 318803b0
+            widget: string
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: 'Original text: 1999, key: 172348'
+            label: Text
+            name: '172348'
+            widget: string
+          - hint: >-
+              Original text: K7 Travel & Tours | All Rights Reserved | Developed
+              by , key: -54a73402
+            label: Text
+            name: '-54a73402'
+            widget: string
+          - hint: 'Original text: YMLK Technologies, key: -28ae11c9'
+            label: Text
+            name: '-28ae11c9'
+            widget: string
+          - hint: >-
+              Original text: Copyright © K7 Travel & Tours | All Rights Reserved
+              | Developed by , key: -26dd9db2
+            label: Text
+            name: '-26dd9db2'
+            widget: string
+          - hint: 'Original text: Contact , key: -1df83be0'
+            label: Text
+            name: '-1df83be0'
+            widget: string
+          - hint: 'Original text: Get in touch , key: c1b6fb2'
+            label: Text
+            name: c1b6fb2
+            widget: string
+          - hint: 'Original text: today, key: 6969f41'
+            label: Text
+            name: 6969f41
+            widget: string
+          - hint: >-
+              Original text: Got questions? Kindly contact us through any of the
+              contact options available below and we will respond as soon as
+              possible., key: 3341342a
+            label: Text
+            name: 3341342a
+            widget: text
+          - hint: 'Original text: Name, key: 24eeab'
+            label: Text
+            name: 24eeab
+            widget: string
+          - hint: 'Original text: Email, key: 3ff5b7c'
+            label: Text
+            name: 3ff5b7c
+            widget: string
+          - hint: 'Original text: Phone, key: 4984d4e'
+            label: Text
+            name: 4984d4e
+            widget: string
+          - hint: 'Original text: Leave us a message, key: 51b6cf2f'
+            label: Text
+            name: 51b6cf2f
+            widget: string
+          - hint: 'Original text: Thank you, key: -592b9e37'
+            label: Text
+            name: '-592b9e37'
+            widget: string
+          - hint: >-
+              Original text: Thanks for reaching out. We will get back to you
+              soon., key: 616f2143
+            label: Text
+            name: 616f2143
+            widget: string
+          - hint: 'Original text: details, key: 5cd8f242'
+            label: Text
+            name: 5cd8f242
+            widget: string
+          - hint: 'Original text: Our Location, key: 32c3fe49'
+            label: Text
+            name: 32c3fe49
+            widget: string
+          - hint: 'Original text: Accra- Ghana, key: -1514f0d0'
+            label: Text
+            name: '-1514f0d0'
+            widget: string
+          - hint: 'Original text: Call us, key: -7c14e080'
+            label: Text
+            name: '-7c14e080'
+            widget: string
+          - hint: 'Original text: +233-557-918-610, key: -10403754'
+            label: Text
+            name: '-10403754'
+            widget: string
+          - hint: 'Original text: Email Us, key: 3137a5e2'
+            label: Text
+            name: 3137a5e2
+            widget: string
+          - hint: 'Original text: info@k7travelandtours.com, key: -57447b31'
+            label: Text
+            name: '-57447b31'
+            widget: string
+          - hint: 'Original text: k7travelandtours@gmail.com, key: 47aedc5b'
+            label: Text
+            name: 47aedc5b
+            widget: string
+          - hint: 'Original text: @K7travelandtours, key: 5f3d0f4a'
+            label: Text
+            name: 5f3d0f4a
+            widget: string
+          - hint: 'Original text: Youtube, key: 281bc303'
+            label: Text
+            name: 281bc303
+            widget: string
+          - hint: 'Original text: k7travelandtours, key: 67014aea'
+            label: Text
+            name: 67014aea
+            widget: string
+          - hint: >-
+              Original text: Experience the Gold Coast with us, one adventure at
+              a time., key: -ddc73da
+            label: Text
+            name: '-ddc73da'
+            widget: string
+          - hint: 'Original text: View Tour Packages, key: 455aa79a'
+            label: Text
+            name: 455aa79a
+            widget: string
+          - hint: 'Original text: Got questions? contact us, key: -c4bdc8'
+            label: Text
+            name: '-c4bdc8'
+            widget: string
+          - hint: 'Original text: What is Included :, key: -73f85d90'
+            label: Text
+            name: '-73f85d90'
+            widget: string
+          - hint: 'Original text: Transportaion, key: -2781e570'
+            label: Text
+            name: '-2781e570'
+            widget: string
+          - hint: 'Original text: Entrance fees, key: -34004349'
+            label: Text
+            name: '-34004349'
+            widget: string
+          - hint: 'Original text: Lunch & Dinner, key: 3b1cc222'
+            label: Text
+            name: 3b1cc222
+            widget: string
+          - hint: 'Original text: Bottled Water, key: 6aee3995'
+            label: Text
+            name: 6aee3995
+            widget: string
+          - hint: 'Original text: Local & foreign Drinks, key: -36c360ca'
+            label: Text
+            name: '-36c360ca'
+            widget: string
+          - hint: 'Original text: Guide Support, key: -672a9d95'
+            label: Text
+            name: '-672a9d95'
+            widget: string
+          - hint: 'Original text: Details, key: -3fee75de'
+            label: Text
+            name: '-3fee75de'
+            widget: string
+          - hint: 'Original text: Reserve your spot, key: 6960164b'
+            label: Text
+            name: 6960164b
+            widget: string
+          - hint: 'Original text: Similar Packages, key: 27ed7fc2'
+            label: Text
+            name: 27ed7fc2
+            widget: string
+          - hint: 'Original text: Packages, key: 309bb90d'
+            label: Text
+            name: 309bb90d
+            widget: string
+          - hint: 'Original text: Filter Item, key: 2ad326bb'
+            label: Text
+            name: 2ad326bb
+            widget: string
+          - hint: 'Original text: Page Not Found, key: -40b0787c'
+            label: Text
+            name: '-40b0787c'
+            widget: string
+          - hint: >-
+              Original text: The page you are looking for doesn't exist or has
+              been moved, key: 556d64d8
+            label: Text
+            name: 556d64d8
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /tour-packages/, key: 70f2099c'
+            label: Link
+            name: 70f2099c
+            widget: string
+          - hint: >-
+              Original link:
+              https://k7-travel-and-tours.webflow.io/contact-us/contact-us, key:
+              -45395b04
+            label: Link
+            name: '-45395b04'
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: https://facebook.com/, key: -f3f4979'
+            label: Link
+            name: '-f3f4979'
+            widget: string
+          - hint: 'Original link: https://twitter.com/, key: 636eb9b8'
+            label: Link
+            name: 636eb9b8
+            widget: string
+          - hint: >-
+              Original link:
+              https://instagram.com/k7travelandtours?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr,
+              key: 15a0b657
+            label: Link
+            name: 15a0b657
+            widget: string
+          - hint: 'Original link: https://www.linkedin.com/, key: 6e47a6b8'
+            label: Link
+            name: 6e47a6b8
+            widget: string
+          - hint: 'Original link: http://youtube.com/, key: -1697a635'
+            label: Link
+            name: '-1697a635'
+            widget: string
+          - hint: 'Original link: http://www.ymlktechnologies.com, key: -19c9fe27'
+            label: Link
+            name: '-19c9fe27'
+            widget: string
+          - hint: 'Original link: tel:+233557918610, key: 7a8c2dc6'
+            label: Link
+            name: 7a8c2dc6
+            widget: string
+          - hint: 'Original link: mailto:info@k7travelandtours.com, key: -55e42e39'
+            label: Link
+            name: '-55e42e39'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i3f617ca7
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: ia7b4166
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i1e203963
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i2313a930
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i3a42f2ca
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i1c6b60c4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 34a80d95
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i719b39a1
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 313e5c57
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: i1ab68825
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-26fbd27f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5c061301
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-d1faf'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2321c0b1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 1c2d82e2
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7c9ba0fb
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 211015b1
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-de7c44c'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 2f329a59
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3085838b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-3a42f2ca'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-230591af'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '30695489'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 287cbee8
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-326bf447'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5aa954e0'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-5294e53f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-1f8be77f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-526f2790'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3c9f2c7e
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 55a7ed8f
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3d5b329d
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-2ed04bd'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 7c17a8fd
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-79de0b1'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3cd0decd
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-6087357f'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
