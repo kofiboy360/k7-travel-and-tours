@@ -42,7 +42,7 @@ f_gallery:
     alt: null
 f_address: Central Region
 f_date: 2020-07-08T00:00:00.000Z
-f_price-tag: GHS 3300 - GHS 2800 each for groups of 5 or more
+f_price-tag: GHS 3300 - (GHS 2800 each for groups of 5 or more)
 layout: "[tour-packages].html"
 slug: cape-coast-day-trip
 tags: tour-packages
