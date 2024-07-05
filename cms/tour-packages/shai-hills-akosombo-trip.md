@@ -74,6 +74,7 @@ seo:
     security and food and beverages included. | K7 Travel and Tours"
   og:image: https://k7travelandtours.com/assets/images/aED4ODWmJq-800.webp
   twitter:image: https://k7travelandtours.com/assets/images/aED4ODWmJq-800.webp
+  og:title: Shai Hills & Akosombo Trip | K7 Travel and Tours
 ---
 We will be visiting the Shai hills zoo to see exotic animals such as zebras, deer, wildcats, ostriches and baboons, Quad biking around the vast shai hills reserve ,visiting the Shai hills museum to see archeological and wildlife history of Ghana and hiking and climbing some of the hills, Adi lake Restaurant for lunch and boat ride on Volta lake.
 
