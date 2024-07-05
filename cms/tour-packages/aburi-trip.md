@@ -52,7 +52,7 @@ f_gallery:
     alt: null
 f_address: Eastern Region
 f_date: 2020-07-08T00:00:00.000Z
-f_price-tag: GHS 2600 - GHS 2000 each for groups of 5 and more
+f_price-tag: GHS 2600 - (GHS 2000 each for groups of 5 or more)
 layout: "[tour-packages].html"
 slug: aburi-trip
 tags: tour-packages
