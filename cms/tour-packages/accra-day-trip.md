@@ -56,13 +56,27 @@ f_gallery:
     alt: null
 f_address: Greater Accra Region
 f_date: 2020-07-08T00:00:00.000Z
+f_price-tag: GHS 1,000 - (GHS 750 each for groups of 5 or more)
 layout: "[tour-packages].html"
 slug: accra-day-trip
-f_price-tag: $ 120 / Person
 tags: tour-packages
 date: 2024-04-02T18:44:49.127Z
+seo:
+  title: Accra Day Trip | K7 travel and tours
+  description: "Discover the history of Ghana and learn about the local culture
+    when you book this full-day sightseeing tour of its capital, Accra. See the
+    best of what Accra has to offer in just one day with this private tour.
+    You'll learn about contemporary Ghanaian history at Kwame Nkrumah Memorial
+    Park, Achimota Zoo, Black Star Square, National Museum, James Town
+    Lighthouse tour, Laboma beach, Web Du Bois Centre.  N﻿B: Professional
+    security and food and beverages included"
+  og:title: Accra Day Trip | K7 travel and tours
+  og:image: https://k7travelandtours.com/assets/images/6H-kYz5Mo0-800.webp
+  twitter:image: https://k7travelandtours.com/assets/images/6H-kYz5Mo0-800.webp
+  twitter:title: Accra Day Trip | K7 travel and tours
 ---
-
 Discover the history of Ghana and learn about the local culture when you book this full-day sightseeing tour of its capital, Accra. See the best of what Accra has to offer in just one day with this private tour. You'll learn about contemporary Ghanaian history at Kwame Nkrumah Memorial Park, Achimota Zoo, Black Star Square, National Museum, James Town Lighthouse tour, Laboma beach, Web Du Bois Centre.
+
+N﻿B: Professional security and food and beverages included
 
 ![](/assets/external/657b0aae21741f2b191173fa_k720travel20and20toursl20bank20details.png)
